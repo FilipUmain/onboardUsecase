@@ -4,21 +4,36 @@ import Link from "next/link";
 import Image from "next/image";
 import { GoArrowRight } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
+import { getOpen } from "@/utils/getOpen";
+import { IOpen } from "@/models/IOpen";
 
 interface IRestaurantCardProps {
   restaurant: IRestaurant;
 }
 
-const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
+const RestaurantCard = async ({ restaurant }: IRestaurantCardProps) => {
+  const openData: IOpen = await getOpen(restaurant.id);
+  let isOpen: boolean = openData.is_currently_open;
+
+  console.log(openData);
+
   return (
     <article className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden ">
       <div className="flex gap-[10px] max-h-[28px]">
-        <div className="border rounded-full p-2 flex text-center justify-between items-center">
-          <GoDotFill className="text-[#00703A] text-xl w-3" />
-          Open
+        <div className="border rounded-full p-2 flex justify-between items-center">
+          <GoDotFill
+            className={`text-xl w-3 ${
+              isOpen ? "text-[#00703A]" : "text-black"
+            }`}
+          />
+          <span
+            className={`text-sm ${isOpen ? "text-[#00703A]" : "text-black"}`}
+          >
+            {isOpen ? "Open" : "Closed"}
+          </span>
         </div>
-        <div className="border rounded-full py-1 px-2 flex text-center justify-center items-center">
-          <span>1 hour</span>
+        <div className="border rounded-full py-1 px-2 flex justify-center items-center">
+          <span>{restaurant.delivery_time_minutes} min</span>
         </div>
       </div>
       <Image

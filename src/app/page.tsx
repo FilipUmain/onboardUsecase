@@ -4,6 +4,7 @@ import RestaurantCard from "@/components/RestaurantCard";
 import { IFilter } from "@/models/IFilter";
 import { IRestaurant } from "@/models/IRestaurant";
 import { getFilters } from "@/utils/getFilters";
+
 import { getRestaraunts } from "@/utils/getRestaurants";
 import Image from "next/image";
 
@@ -16,14 +17,12 @@ export default async function Home() {
 
   const filters: IFilter[] = filtersRes.filters;
 
-  console.log(filters);
-
-  console.log("Rest:", restaurants);
+  // console.log(restaurants);
 
   return (
     <main className="bg-[#FAFAFA] flex min-h-screen w-[100vw] flex-col justify-between items-center">
       <MaxWidthWrapper>
-        <div className="w-full">
+        <div className="w-full m-8">
           <Image
             src="/images/logo.png"
             alt="restaurant image"

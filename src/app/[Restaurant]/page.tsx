@@ -11,8 +11,6 @@ interface RestaurantProps {
 const Restaurant = async ({ searchParams }: RestaurantProps) => {
   const restaurant: IRestaurant = await getRestaurant(searchParams.id);
 
-  console.log(restaurant);
-
   return <div>{restaurant.name}</div>;
 };
 
