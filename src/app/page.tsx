@@ -1,3 +1,4 @@
+import DeliveryTime from "@/components/DeliveryTime";
 import FilterCard from "@/components/FilterCard";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import RestaurantCard from "@/components/RestaurantCard";
@@ -17,19 +18,22 @@ export default async function Home() {
 
   const filters: IFilter[] = filtersRes.filters;
 
-  // console.log(restaurants);
+  // console.log(filters);
+
+  console.log(restaurants);
 
   return (
     <main className="bg-[#FAFAFA] flex min-h-screen w-[100vw] flex-col justify-between items-center">
       <MaxWidthWrapper>
-        <div className="w-full m-8">
+        <div className="w-full m-8 mb-4">
           <Image
             src="/images/logo.png"
             alt="restaurant image"
-            width={140}
+            width={170}
             height={140}
           />
         </div>
+        <DeliveryTime />
         <section className="flex gap-[10px] overflow-x-auto w-full">
           {filters.map((filter) => (
             <FilterCard filter={filter} key={filter.id} />

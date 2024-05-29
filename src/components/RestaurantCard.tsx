@@ -6,6 +6,7 @@ import { GoArrowRight } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
 import { getOpen } from "@/utils/getOpen";
 import { IOpen } from "@/models/IOpen";
+import { getPriceRange } from "@/utils/getPriceRange";
 
 interface IRestaurantCardProps {
   restaurant: IRestaurant;
@@ -13,9 +14,13 @@ interface IRestaurantCardProps {
 
 const RestaurantCard = async ({ restaurant }: IRestaurantCardProps) => {
   const openData: IOpen = await getOpen(restaurant.id);
-  let isOpen: boolean = openData.is_currently_open;
+  let isOpen: boolean = openData.is_open;
 
-  console.log(openData);
+  const priceRageData = await getPriceRange(restaurant.price_range_id);
+
+  console.log("hej", priceRageData);
+
+  // console.log(openData);
 
   return (
     <article className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden ">
@@ -26,11 +31,7 @@ const RestaurantCard = async ({ restaurant }: IRestaurantCardProps) => {
               isOpen ? "text-[#00703A]" : "text-black"
             }`}
           />
-          <span
-            className={`text-sm ${isOpen ? "text-[#00703A]" : "text-black"}`}
-          >
-            {isOpen ? "Open" : "Closed"}
-          </span>
+          <span className="text-black">{isOpen ? "Open" : "Closed"}</span>
         </div>
         <div className="border rounded-full py-1 px-2 flex justify-center items-center">
           <span>{restaurant.delivery_time_minutes} min</span>
