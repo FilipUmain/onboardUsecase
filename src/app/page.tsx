@@ -1,18 +1,44 @@
+import FilterCard from "@/components/FilterCard";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import RestaurantCard from "@/components/RestaurantCard";
+import { IFilter } from "@/models/IFilter";
 import { IRestaurant } from "@/models/IRestaurant";
+import { getFilters } from "@/utils/getFilters";
 import { getRestaraunts } from "@/utils/getRestaurants";
+import Image from "next/image";
 
 export default async function Home() {
   const res = await getRestaraunts();
 
   const restaurants: IRestaurant[] = res.restaurants;
 
+  const filtersRes = await getFilters();
+
+  const filters: IFilter[] = filtersRes.filters;
+
+  console.log(filters);
+
+  console.log("Rest:", restaurants);
+
   return (
-    <main className="bg-[#FAFAFA] flex min-h-screen w-[100vw] flex-col items-center justify-between items-center">
+    <main className="bg-[#FAFAFA] flex min-h-screen w-[100vw] flex-col justify-between items-center">
       <MaxWidthWrapper>
-        <section className="w-[90%] lg:w-[80%] flex flex-col gap-3">
-          <h2 className="text-[20px]">Restaurant's</h2>
+        <div className="w-full">
+          <Image
+            src="/images/logo.png"
+            alt="restaurant image"
+            width={140}
+            height={140}
+          />
+        </div>
+        <section className="flex gap-[10px] overflow-x-auto w-full">
+          {filters.map((filter) => (
+            <FilterCard filter={filter} key={filter.id} />
+          ))}
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <h2 className="text-[20px] my-3">Restaurant&apos;s</h2>
           {restaurants.map((restaurant) => (
             <RestaurantCard restaurant={restaurant} key={restaurant.id} />
           ))}

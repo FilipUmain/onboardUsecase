@@ -6,7 +6,7 @@ interface MaxWidthWrapperProps {
 
 const MaxWidthWrapper = ({ children }: MaxWidthWrapperProps) => {
   return (
-    <section className="w-[95%] lg:w-[80%] flex items-center justify-center">
+    <section className="w-[85%] lg:w-[80%] flex flex-col items-center justify-center pt-[78px]">
       {children}
     </section>
   );
