@@ -2,9 +2,12 @@ import React, { Dispatch, SetStateAction } from "react";
 import FilterContainer from "./FilterContainer";
 import DeliveryTime from "./DeliveryTime";
 import { IFilter } from "@/models/IFilter";
+import { getPriceRange } from "@/utils/getPriceRange";
+import { IRestaurant } from "@/models/IRestaurant";
 
 interface IFilterSideBarProps {
   filters: IFilter[];
+  restaurants: IRestaurant[];
   onFilterClick: (filter: IFilter) => void;
   selectedFilter: IFilter | null;
   selectedDeliveryTime: { min: number; max: number };
@@ -15,23 +18,35 @@ interface IFilterSideBarProps {
 
 const FilterSideBar = ({
   filters,
+  restaurants,
   onFilterClick,
   selectedFilter,
   selectedDeliveryTime,
   setSelectedDeliveryTime,
 }: IFilterSideBarProps) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col gap-3">
       <h2 className="text-2xl">Filter</h2>
-
-      <h3 className="text-gray-400">FOOD CATEGORY</h3>
+      <h3 className="text-gray-400 my-2 font-semibold">FOOD CATEGORY</h3>
       {filters.map((filter) => (
-        <span className="p-3 border rounded-[8px]">{filter.name}</span>
+        <span
+          className="p-3 border rounded-[8px]"
+          onClick={() => onFilterClick(filter)}
+        >
+          {filter.name}
+        </span>
       ))}
       <DeliveryTime
         selectedDeliveryTime={selectedDeliveryTime}
         setSelectedDeliveryTime={setSelectedDeliveryTime}
       />
+      <h3 className="text-gray-400 my-2 font-semibold">PRICE RANGE</h3>
+      <div className="flex gap-3">
+        <span className="p-3 border rounded-[8px]">$</span>
+        <span className="p-3 border rounded-[8px]">$$</span>
+        <span className="p-3 border rounded-[8px]">$$$</span>
+        <span className="p-3 border rounded-[8px]">$$$$</span>
+      </div>
     </div>
   );
 };

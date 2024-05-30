@@ -81,9 +81,10 @@ const RestaurantInfoContainer = () => {
       </div>
 
       <div className="w-full flex gap-[24px]">
-        <div className="hidden lg:flex flex-col lg:w-[18%] bg-white rounded-[8px] p-4 border gap-3">
+        <div className="hidden lg:flex flex-col lg:w-[18%] bg-white rounded-[8px] p-6 border gap-3">
           <FilterSideBar
             filters={filters}
+            restaurants={restaurants}
             onFilterClick={handleFilterClick}
             selectedFilter={selectedFilter}
             selectedDeliveryTime={selectedDeliveryTime}
