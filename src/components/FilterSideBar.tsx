@@ -21,7 +21,7 @@ const FilterSideBar = ({
   setSelectedDeliveryTime,
 }: IFilterSideBarProps) => {
   return (
-    <div className="flex flex-col w-[18%] bg-white rounded-[8px] p-4 border gap-3">
+    <div className="flex flex-col w-full">
       <h2 className="text-2xl">Filter</h2>
 
       <h3 className="text-gray-400">FOOD CATEGORY</h3>
