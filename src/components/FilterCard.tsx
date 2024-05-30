@@ -1,22 +1,25 @@
+import React from "react";
 import { IFilter } from "@/models/IFilter";
 import Image from "next/image";
-import React from "react";
 
 interface FilterCardProps {
   filter: IFilter;
   onClick: (filter: IFilter) => void;
+  isSelected: boolean;
 }
 
-const FilterCard = ({ filter, onClick }: FilterCardProps) => {
+const FilterCard = ({ filter, onClick, isSelected }: FilterCardProps) => {
   return (
     <div
-      className="bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer"
+      className={`bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer ${
+        isSelected ? "bg-gray-200" : ""
+      }`}
       onClick={() => onClick(filter)}
     >
       <h2>{filter.name}</h2>
       <Image
         src={filter.image_url}
-        alt="restaurant image"
+        alt="filter image"
         width={50}
         height={20}
         className="absolute right-0"

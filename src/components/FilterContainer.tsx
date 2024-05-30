@@ -1,48 +1,31 @@
-"use client";
-
-import { useState } from "react";
+import React from "react";
 import { IFilter } from "@/models/IFilter";
 import { IRestaurant } from "@/models/IRestaurant";
-import FilterCard from "@/components/FilterCard";
-import RestaurantCard from "@/components/RestaurantCard";
+import FilterCard from "./FilterCard";
 
 interface FilterContainerProps {
   filters: IFilter[];
-  restaurants: IRestaurant[];
+  onFilterClick: (filter: IFilter) => void;
+  selectedFilter: IFilter | null;
 }
 
-const FilterContainer = ({ filters, restaurants }: FilterContainerProps) => {
-  const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
-
-  const handleFilterClick = (filter: IFilter) => {
-    setSelectedFilter(filter);
-  };
-
-  const filteredRestaurants = selectedFilter
-    ? restaurants.filter((restaurant) =>
-        restaurant.filter_ids.includes(selectedFilter.id)
-      )
-    : restaurants;
-
+const FilterContainer = ({
+  filters,
+  onFilterClick,
+  selectedFilter,
+}: FilterContainerProps) => {
+  console.log("FilterContainer", filters);
   return (
-    <>
-      <section className="flex gap-[10px] overflow-x-auto w-full">
-        {filters.map((filter) => (
-          <FilterCard
-            filter={filter}
-            key={filter.id}
-            onClick={handleFilterClick}
-          />
-        ))}
-      </section>
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-[20px] my-3">Restaurant&apos;s</h2>
-        {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard restaurant={restaurant} key={restaurant.id} />
-        ))}
-      </section>
-    </>
+    <section className="flex gap-[10px] overflow-x-auto w-full">
+      {filters.map((filter) => (
+        <FilterCard
+          filter={filter}
+          key={filter.id}
+          onClick={onFilterClick}
+          isSelected={selectedFilter?.id === filter.id}
+        />
+      ))}
+    </section>
   );
 };
 

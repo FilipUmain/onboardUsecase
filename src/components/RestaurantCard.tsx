@@ -1,7 +1,7 @@
 "use client";
 
 import { IRestaurant } from "@/models/IRestaurant";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { GoArrowRight } from "react-icons/go";
@@ -19,16 +19,23 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [priceRange, setPriceRange] = useState("");
 
-  const getData = async () => {
-    const openTimeData: IOpen = await getOpen(restaurant.id);
-    let openData: boolean = openTimeData.is_open;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const openTimeData: IOpen = await getOpen(restaurant.id);
+        const priceRangeData = await getPriceRange(restaurant.price_range_id);
 
-    const priceRangeData = await getPriceRange(restaurant.price_range_id);
+        setIsOpen(openTimeData.is_open);
+        setPriceRange(priceRangeData);
+      } catch (error) {
+        console.error("Failed to fetch data", error);
+      }
+    };
 
-    setIsOpen(openData);
-    setPriceRange(priceRangeData);
-    console.log("hej", priceRangeData);
-  };
+    fetchData();
+  }, [restaurant.id, restaurant.price_range_id]);
+
+  // getData();
 
   // console.log(openData);
 
