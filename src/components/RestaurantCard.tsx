@@ -35,10 +35,6 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
     fetchData();
   }, [restaurant.id, restaurant.price_range_id]);
 
-  // getData();
-
-  // console.log(openData);
-
   return (
     <article className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden ">
       <div className="flex gap-[10px] max-h-[28px]">

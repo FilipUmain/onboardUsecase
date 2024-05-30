@@ -18,11 +18,11 @@ const DeliveryTime = ({
   };
 
   return (
-    <div className="flex flex-col w-full mb-6">
+    <div className="flex flex-col w-full mb-6 ">
       <h3 className="text-gray-400 font-semibold my-3">DELIVERY TIME</h3>
-      <div className="flex justify-between">
+      <div className="flex justify-between lg:flex-wrap lg:gap-1 lg:grid lg:grid-cols-2">
         <span
-          className="bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px] border"
+          className="bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px]  border"
           onClick={() => handleDeliveryTimeClick(0, 10)}
         >
           0-10 min

@@ -9,6 +9,7 @@ import { IFilter } from "@/models/IFilter";
 import { IRestaurant } from "@/models/IRestaurant";
 import { getFilters } from "@/utils/getFilters";
 import { getRestaurants } from "@/utils/getRestaurants";
+import FilterSideBar from "./FilterSideBar";
 
 const RestaurantInfoContainer = () => {
   const [filters, setFilters] = useState<IFilter[]>([]);
@@ -48,31 +49,63 @@ const RestaurantInfoContainer = () => {
   );
 
   return (
-    <>
-      <div className="w-full m-8 mb-4">
-        <Image
-          src="/images/logo.png"
-          alt="restaurant image"
-          width={170}
-          height={140}
+    <section className="w-full">
+      <div className="w-full mt-8 mb-4 lg:m-2 lg:mb-8">
+        <div className="lg:hidden">
+          <Image
+            src="/images/logo.png"
+            alt="restaurant image"
+            width={140}
+            height={140}
+            priority={true}
+            className="lg:mb-8"
+          />
+        </div>
+        <div className="hidden lg:flex lg:flex-col w-full">
+          <Image
+            src="/images/logo.png"
+            alt="restaurant image"
+            width={280}
+            height={280}
+            priority={true}
+            className="lg:mb-8"
+          />
+        </div>
+      </div>
+
+      <div className="lg:hidden w-full">
+        <DeliveryTime
+          selectedDeliveryTime={selectedDeliveryTime}
+          setSelectedDeliveryTime={setSelectedDeliveryTime}
         />
       </div>
-      <DeliveryTime
-        selectedDeliveryTime={selectedDeliveryTime}
-        setSelectedDeliveryTime={setSelectedDeliveryTime}
-      />
-      <FilterContainer
-        filters={filters}
-        onFilterClick={handleFilterClick}
-        selectedFilter={selectedFilter}
-      />
-      <section className="flex flex-col gap-3 w-full">
-        <h2 className="text-[20px] my-3">Restaurants</h2>
-        {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard restaurant={restaurant} key={restaurant.id} />
-        ))}
-      </section>
-    </>
+
+      <div className="w-full flex gap-[24px]">
+        <FilterSideBar
+          filters={filters}
+          onFilterClick={handleFilterClick}
+          selectedFilter={selectedFilter}
+          selectedDeliveryTime={selectedDeliveryTime}
+          setSelectedDeliveryTime={setSelectedDeliveryTime}
+        />
+        <div className="w-[75%]">
+          <FilterContainer
+            filters={filters}
+            onFilterClick={handleFilterClick}
+            selectedFilter={selectedFilter}
+          />
+          <h2 className="text-[20px] lg:text-[40px] lg:mb-11 lg:mt-12 my-3">
+            Restaurant&apos;s
+          </h2>
+
+          <section className="flex flex-col gap-[20px] w-full lg:grid lg:grid-cols-3">
+            {filteredRestaurants.map((restaurant) => (
+              <RestaurantCard restaurant={restaurant} key={restaurant.id} />
+            ))}
+          </section>
+        </div>
+      </div>
+    </section>
   );
 };
 
