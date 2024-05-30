@@ -57,7 +57,7 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
         </div>
       </div>
       <Image
-        src={restaurant.image_url}
+        src={`https://work-test-web-2024-eze6j4scpq-lz.a.run.app${restaurant.image_url}`}
         alt="restaurant image"
         width={140}
         height={140}

@@ -18,7 +18,7 @@ const FilterCard = ({ filter, onClick, selectedFilter }: FilterCardProps) => {
     >
       <h2>{filter.name}</h2>
       <Image
-        src={filter.image_url}
+        src={`https://work-test-web-2024-eze6j4scpq-lz.a.run.app${filter.image_url}`}
         alt="filter image"
         width={50}
         height={20}

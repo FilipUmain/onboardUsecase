@@ -61,7 +61,7 @@ const RestaurantInfoContainer = () => {
             src="/images/logo.png"
             alt="restaurant image"
             width={170}
-            height={60}
+            height={24}
             priority={true}
             className="lg:mb-8"
           />
