@@ -4,11 +4,15 @@ import React from "react";
 
 interface FilterCardProps {
   filter: IFilter;
+  onClick: (filter: IFilter) => void;
 }
 
-const FilterCard = ({ filter }: FilterCardProps) => {
+const FilterCard = ({ filter, onClick }: FilterCardProps) => {
   return (
-    <div className=" bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative">
+    <div
+      className="bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer"
+      onClick={() => onClick(filter)}
+    >
       <h2>{filter.name}</h2>
       <Image
         src={filter.image_url}

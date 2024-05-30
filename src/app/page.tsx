@@ -1,26 +1,26 @@
 import DeliveryTime from "@/components/DeliveryTime";
 import FilterCard from "@/components/FilterCard";
+import FilterContainer from "@/components/FilterContainer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import RestaurantCard from "@/components/RestaurantCard";
 import { IFilter } from "@/models/IFilter";
 import { IRestaurant } from "@/models/IRestaurant";
+import { fetchServer } from "@/utils/fetchServer";
 import { getFilters } from "@/utils/getFilters";
 
 import { getRestaraunts } from "@/utils/getRestaurants";
 import Image from "next/image";
 
 export default async function Home() {
-  const res = await getRestaraunts();
+  const serverData = await fetchServer();
 
-  const restaurants: IRestaurant[] = res.restaurants;
+  const restaurants: IRestaurant[] = serverData.restaurants;
 
-  const filtersRes = await getFilters();
+  const filters: IFilter[] = serverData.filters;
 
-  const filters: IFilter[] = filtersRes.filters;
+  console.log("Filters: ", filters);
 
-  // console.log(filters);
-
-  console.log(restaurants);
+  console.log("Restaurants: ", restaurants);
 
   return (
     <main className="bg-[#FAFAFA] flex min-h-screen w-[100vw] flex-col justify-between items-center">
@@ -34,12 +34,7 @@ export default async function Home() {
           />
         </div>
         <DeliveryTime />
-        <section className="flex gap-[10px] overflow-x-auto w-full">
-          {filters.map((filter) => (
-            <FilterCard filter={filter} key={filter.id} />
-          ))}
-        </section>
-
+        <FilterContainer filters={filters} restaurants={restaurants} />
         <section className="flex flex-col gap-3">
           <h2 className="text-[20px] my-3">Restaurant&apos;s</h2>
           {restaurants.map((restaurant) => (

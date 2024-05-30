@@ -1,3 +1,5 @@
+"use client";
+
 import { IRestaurant } from "@/models/IRestaurant";
 import React from "react";
 import Link from "next/link";
@@ -7,18 +9,26 @@ import { GoDotFill } from "react-icons/go";
 import { getOpen } from "@/utils/getOpen";
 import { IOpen } from "@/models/IOpen";
 import { getPriceRange } from "@/utils/getPriceRange";
+import { useState } from "react";
 
 interface IRestaurantCardProps {
   restaurant: IRestaurant;
 }
 
-const RestaurantCard = async ({ restaurant }: IRestaurantCardProps) => {
-  const openData: IOpen = await getOpen(restaurant.id);
-  let isOpen: boolean = openData.is_open;
+const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [priceRange, setPriceRange] = useState("");
 
-  const priceRageData = await getPriceRange(restaurant.price_range_id);
+  const getData = async () => {
+    const openTimeData: IOpen = await getOpen(restaurant.id);
+    let openData: boolean = openTimeData.is_open;
 
-  console.log("hej", priceRageData);
+    const priceRangeData = await getPriceRange(restaurant.price_range_id);
+
+    setIsOpen(openData);
+    setPriceRange(priceRangeData);
+    console.log("hej", priceRangeData);
+  };
 
   // console.log(openData);
 

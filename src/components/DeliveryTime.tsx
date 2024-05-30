@@ -1,6 +1,11 @@
-import React from "react";
+"use client";
+
+import { IFilter } from "@/models/IFilter";
+import React, { useState } from "react";
 
 const DeliveryTime = () => {
+  const [selectedFilter, setSelectedFilter] = useState<IFilter>();
+
   return (
     <div className="flex flex-col w-full mb-6">
       <h3 className="text-gray-400 font-semibold my-3">DELIVERY TIME</h3>
