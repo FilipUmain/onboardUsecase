@@ -40,17 +40,17 @@ const FilterSideBar = ({
         setSelectedDeliveryTime={setSelectedDeliveryTime}
       />
       <h3 className="text-gray-400 my-2 font-semibold">PRICE RANGE</h3>
-      <div className="flex flex-col gap-2">
-        <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
+      <div className="flex gap-2">
+        <span className="px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
           $
         </span>
-        <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
+        <span className=" px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
           $$
         </span>
-        <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
+        <span className="px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
           $$$
         </span>
-        <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
+        <span className="px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
           $$$$
         </span>
       </div>
