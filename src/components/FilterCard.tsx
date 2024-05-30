@@ -1,4 +1,3 @@
-// FilterCard.tsx
 import React from "react";
 import { IFilter } from "@/models/IFilter";
 import Image from "next/image";

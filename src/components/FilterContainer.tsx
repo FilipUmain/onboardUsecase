@@ -1,4 +1,3 @@
-// FilterContainer.tsx
 import React from "react";
 import { IFilter } from "@/models/IFilter";
 import FilterCard from "./FilterCard";
