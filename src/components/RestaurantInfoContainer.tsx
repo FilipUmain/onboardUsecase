@@ -10,13 +10,11 @@ import { IRestaurant } from "@/models/IRestaurant";
 import { getFilters } from "@/utils/getFilters";
 import { getRestaurants } from "@/utils/getRestaurants";
 import FilterSideBar from "./FilterSideBar";
-import { IPriceRange } from "@/models/IPriceRange";
 
 const RestaurantInfoContainer = () => {
   const [filters, setFilters] = useState<IFilter[]>([]);
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
-  const [selectedPriceRange, setSelectedPriceRange] = useState<IPriceRange>();
   const [selectedDeliveryTime, setSelectedDeliveryTime] = useState({
     min: 0,
     max: 100,
@@ -39,10 +37,15 @@ const RestaurantInfoContainer = () => {
   }, []);
 
   const handleFilterClick = (filter: IFilter) => {
-    setSelectedFilter(filter);
+    if (selectedFilter && selectedFilter.id === filter.id) {
+      // deselect
+      setSelectedFilter(null);
+    } else {
+      //select
+      setSelectedFilter(filter);
+    }
   };
 
-  // Filter restaurants based on selected time range
   const filteredRestaurants = restaurants.filter(
     (restaurant) =>
       restaurant.delivery_time_minutes >= selectedDeliveryTime.min &&
@@ -86,7 +89,6 @@ const RestaurantInfoContainer = () => {
         <div className="hidden lg:flex flex-col lg:w-[18%] bg-white rounded-[8px] p-6 border gap-3">
           <FilterSideBar
             filters={filters}
-            restaurants={restaurants}
             onFilterClick={handleFilterClick}
             selectedFilter={selectedFilter}
             selectedDeliveryTime={selectedDeliveryTime}
