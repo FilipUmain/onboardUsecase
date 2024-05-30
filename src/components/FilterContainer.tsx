@@ -14,7 +14,6 @@ const FilterContainer = ({
   onFilterClick,
   selectedFilter,
 }: FilterContainerProps) => {
-  console.log("FilterContainer", filters);
   return (
     <section className="flex gap-[10px] overflow-x-auto w-full">
       {filters.map((filter) => (

@@ -1,7 +1,7 @@
 import { IFilter } from "@/models/IFilter";
 import { IRestaurant } from "@/models/IRestaurant";
 import { getFilters } from "@/utils/getFilters";
-import { getRestaraunts } from "@/utils/getRestaurants";
+import { getRestaurants } from "@/utils/getRestaurants";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -9,7 +9,7 @@ export async function GET() {
 
   const filters = filtersRes.filters;
 
-  const res = await getRestaraunts();
+  const res = await getRestaurants();
 
   const restaurants = res.restaurants;
 
