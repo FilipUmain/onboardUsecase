@@ -60,8 +60,8 @@ const RestaurantInfoContainer = () => {
           <Image
             src="/images/logo.png"
             alt="restaurant image"
-            width={140}
-            height={140}
+            width={170}
+            height={60}
             priority={true}
             className="lg:mb-8"
           />
