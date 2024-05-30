@@ -36,6 +36,8 @@ const RestaurantInfoContainer = () => {
     fetchData();
   }, []);
 
+  console.log(restaurants);
+
   const handleFilterClick = (filter: IFilter) => {
     if (selectedFilter && selectedFilter.id === filter.id) {
       // deselect
@@ -52,6 +54,8 @@ const RestaurantInfoContainer = () => {
       restaurant.delivery_time_minutes <= selectedDeliveryTime.max &&
       (!selectedFilter || restaurant.filter_ids.includes(selectedFilter.id))
   );
+
+  console.log("filters:", filters);
 
   return (
     <section className="w-full">
