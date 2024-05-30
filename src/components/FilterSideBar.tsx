@@ -27,7 +27,7 @@ const FilterSideBar = ({
       <div className="flex flex-col gap-2">
         {filters.map((filter) => (
           <span
-            className="inline-block p-3 border rounded-[8px] hover:bg-gray-100 cursor-pointer w-max"
+            className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-100 cursor-pointer w-max"
             onClick={() => onFilterClick(filter)}
             key={filter.id}
           >
@@ -47,7 +47,7 @@ const FilterSideBar = ({
         <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
           $$
         </span>
-        <span className="inline-block px-3 py-2border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
+        <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
           $$$
         </span>
         <span className="inline-block px-3 py-2 border rounded-[8px] hover:bg-gray-200 cursor-pointer w-max">
