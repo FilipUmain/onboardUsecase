@@ -25,9 +25,9 @@ const DeliveryTime = ({
   };
 
   return (
-    <div className="flex flex-col w-full mb-6">
+    <div className="flex flex-col w-full mb-6 lg:w-[155px]">
       <h3 className="text-gray-400 font-semibold my-3">DELIVERY TIME</h3>
-      <div className="flex justify-between lg:flex-wrap lg:gap-1 w-[80%]">
+      <div className="flex justify-between lg:flex-wrap lg:gap-1 ">
         <span
           style={{ width: "max-content" }}
           className={`bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer ${
