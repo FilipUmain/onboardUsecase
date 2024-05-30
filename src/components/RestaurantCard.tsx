@@ -1,6 +1,5 @@
 import { IRestaurant } from "@/models/IRestaurant";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { GoArrowRight } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
@@ -32,14 +31,15 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
     fetchData();
   }, [restaurant.id, restaurant.price_range_id]);
 
-  const cardStyle = {
-    opacity: isOpen ? 1 : 0.5,
+  const handleClick = () => {
+    if (!isOpen) return;
+    window.location.href = `Restaurant/?id=${restaurant.id}`;
   };
 
   return (
     <article
-      className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden"
-      style={cardStyle}
+      onClick={handleClick}
+      className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden cursor-pointer"
     >
       <div className="flex gap-[10px] max-h-[28px]">
         <div className="border rounded-full p-2 flex justify-between items-center">
@@ -48,7 +48,9 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
               isOpen ? "text-[#00703A]" : "text-black"
             }`}
           />
-          <span className="text-black">{isOpen ? "Open" : "Closed"}</span>
+          <span className={isOpen ? "" : "opacity-50"}>
+            {isOpen ? "Open" : "Closed"}
+          </span>
         </div>
         <div className="border rounded-full py-1 px-2 flex justify-center items-center">
           <span>{restaurant.delivery_time_minutes} min</span>
@@ -60,21 +62,36 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
         width={140}
         height={140}
         className="absolute top-[-30px] right-[-10px]"
+        style={{ opacity: isOpen ? 1 : 0.5 }}
       />
-      <div className="w-full h-10 flex justify-between items-center">
-        <h1>{restaurant.name}</h1>
-        <Link
-          href={`Restaurant/?id=${restaurant.id}`}
-          className="bg-[#00703A] h-[32px] w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px]"
-        >
-          <GoArrowRight />
-        </Link>
-      </div>
       {!isOpen && (
-        <div className="absolute left-1/2 transform -translate-x-1/2 bottom-1/2 text-center text-sm text-gray-500">
-          Opens tomorrow
+        <div className="relative w-full text-center">
+          <span className="text-black p-2 border rounded-[4px] bg-gray-50">
+            Opens tomorrow at 12 pm
+          </span>
         </div>
       )}
+      <div
+        className="w-full h-10 flex justify-between items-center"
+        style={{ opacity: isOpen ? 1 : 0.5 }}
+      >
+        <h1 style={{ opacity: isOpen ? 1 : 0.5 }}>{restaurant.name}</h1>
+        {isOpen ? (
+          <a
+            href={`Restaurant/?id=${restaurant.id}`}
+            className="bg-[#00703A] h-[32px] w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px]"
+          >
+            <GoArrowRight />
+          </a>
+        ) : (
+          <div
+            className="bg-[#00703A] h-[32px] w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px] opacity-50 cursor-not-allowed"
+            style={{ pointerEvents: "none" }}
+          >
+            <GoArrowRight />
+          </div>
+        )}
+      </div>
     </article>
   );
 };

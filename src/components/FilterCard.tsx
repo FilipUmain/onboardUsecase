@@ -11,7 +11,7 @@ interface FilterCardProps {
 const FilterCard = ({ filter, onClick, isSelected }: FilterCardProps) => {
   return (
     <div
-      className={`bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer ${
+      className={`hover:bg-gray-200 bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer ${
         isSelected ? "bg-gray-200" : ""
       }`}
       onClick={() => onClick(filter)}

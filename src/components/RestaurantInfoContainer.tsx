@@ -10,11 +10,13 @@ import { IRestaurant } from "@/models/IRestaurant";
 import { getFilters } from "@/utils/getFilters";
 import { getRestaurants } from "@/utils/getRestaurants";
 import FilterSideBar from "./FilterSideBar";
+import { IPriceRange } from "@/models/IPriceRange";
 
 const RestaurantInfoContainer = () => {
   const [filters, setFilters] = useState<IFilter[]>([]);
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<IPriceRange>();
   const [selectedDeliveryTime, setSelectedDeliveryTime] = useState({
     min: 0,
     max: 100,
