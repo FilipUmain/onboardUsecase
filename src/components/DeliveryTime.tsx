@@ -30,10 +30,10 @@ const DeliveryTime = ({
       <div className="flex justify-between lg:flex-wrap lg:gap-1 ">
         <span
           style={{ width: "max-content" }}
-          className={`bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer ${
+          className={` hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer ${
             selectedDeliveryTime.min === 0 && selectedDeliveryTime.max === 10
               ? "bg-gray-200"
-              : ""
+              : "bg-white"
           }`}
           onClick={() => handleDeliveryTimeClick(0, 10)}
         >
@@ -41,10 +41,10 @@ const DeliveryTime = ({
         </span>
         <span
           style={{ width: "max-content" }}
-          className={`bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer  ${
+          className={` hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer  ${
             selectedDeliveryTime.min === 10 && selectedDeliveryTime.max === 30
               ? "bg-gray-200"
-              : ""
+              : "bg-white"
           }`}
           onClick={() => handleDeliveryTimeClick(10, 30)}
         >
@@ -52,10 +52,10 @@ const DeliveryTime = ({
         </span>
         <span
           style={{ width: "max-content" }}
-          className={`bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer  ${
+          className={` hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer  ${
             selectedDeliveryTime.min === 30 && selectedDeliveryTime.max === 60
               ? "bg-gray-200"
-              : ""
+              : "bg-white"
           }`}
           onClick={() => handleDeliveryTimeClick(30, 60)}
         >
@@ -63,10 +63,10 @@ const DeliveryTime = ({
         </span>
         <span
           style={{ width: "max-content" }}
-          className={`bg-white hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer  ${
+          className={` hover:bg-gray-200 py-2 px-3 rounded-[8px] border cursor-pointer  ${
             selectedDeliveryTime.min === 60 && selectedDeliveryTime.max === 120
               ? "bg-gray-200"
-              : ""
+              : "bg-white"
           }`}
           onClick={() => handleDeliveryTimeClick(60, 120)}
         >

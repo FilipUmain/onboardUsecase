@@ -1,6 +1,6 @@
+// FilterContainer.tsx
 import React from "react";
 import { IFilter } from "@/models/IFilter";
-import { IRestaurant } from "@/models/IRestaurant";
 import FilterCard from "./FilterCard";
 
 interface FilterContainerProps {
@@ -21,7 +21,7 @@ const FilterContainer = ({
           filter={filter}
           key={filter.id}
           onClick={onFilterClick}
-          isSelected={selectedFilter?.id === filter.id}
+          selectedFilter={selectedFilter}
         />
       ))}
     </section>

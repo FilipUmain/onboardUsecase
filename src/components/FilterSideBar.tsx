@@ -31,7 +31,7 @@ const FilterSideBar = ({
               selectedFilter?.id === filter.id ? "bg-gray-200" : ""
             }`}
             onClick={() => onFilterClick(filter)}
-            style={{ width: "max-content" }} // Set max-content width
+            style={{ width: "max-content" }}
           >
             {filter.name}
           </span>

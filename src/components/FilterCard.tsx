@@ -1,3 +1,4 @@
+// FilterCard.tsx
 import React from "react";
 import { IFilter } from "@/models/IFilter";
 import Image from "next/image";
@@ -5,14 +6,14 @@ import Image from "next/image";
 interface FilterCardProps {
   filter: IFilter;
   onClick: (filter: IFilter) => void;
-  isSelected: boolean;
+  selectedFilter: IFilter | null;
 }
 
-const FilterCard = ({ filter, onClick, isSelected }: FilterCardProps) => {
+const FilterCard = ({ filter, onClick, selectedFilter }: FilterCardProps) => {
   return (
     <div
-      className={`hover:bg-gray-200 bg-white rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer ${
-        isSelected ? "bg-gray-200" : ""
+      className={`hover:bg-gray-200 rounded-[8px] border p-3 min-h-[80px] min-w-[160px] flex justify-between relative cursor-pointer ${
+        selectedFilter?.id === filter.id ? "bg-gray-200 !important" : "bg-white"
       }`}
       onClick={() => onClick(filter)}
     >
