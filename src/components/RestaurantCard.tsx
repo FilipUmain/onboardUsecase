@@ -1,7 +1,5 @@
-"use client";
-
 import { IRestaurant } from "@/models/IRestaurant";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { GoArrowRight } from "react-icons/go";
@@ -9,7 +7,6 @@ import { GoDotFill } from "react-icons/go";
 import { getOpen } from "@/utils/getOpen";
 import { IOpen } from "@/models/IOpen";
 import { getPriceRange } from "@/utils/getPriceRange";
-import { useState } from "react";
 
 interface IRestaurantCardProps {
   restaurant: IRestaurant;
@@ -35,8 +32,15 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
     fetchData();
   }, [restaurant.id, restaurant.price_range_id]);
 
+  const cardStyle = {
+    opacity: isOpen ? 1 : 0.5,
+  };
+
   return (
-    <article className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden ">
+    <article
+      className="bg-white p-3 w-full h-[202px] justify-between border rounded-[8px] flex flex-col relative  overflow-hidden"
+      style={cardStyle}
+    >
       <div className="flex gap-[10px] max-h-[28px]">
         <div className="border rounded-full p-2 flex justify-between items-center">
           <GoDotFill
@@ -66,6 +70,11 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
           <GoArrowRight />
         </Link>
       </div>
+      {!isOpen && (
+        <div className="absolute left-1/2 transform -translate-x-1/2 bottom-1/2 text-center text-sm text-gray-500">
+          Opens tomorrow
+        </div>
+      )}
     </article>
   );
 };

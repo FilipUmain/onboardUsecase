@@ -32,6 +32,7 @@ const FilterSideBar = ({
         <span
           className="p-3 border rounded-[8px]"
           onClick={() => onFilterClick(filter)}
+          key={filter.id}
         >
           {filter.name}
         </span>
