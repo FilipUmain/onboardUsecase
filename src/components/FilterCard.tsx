@@ -22,7 +22,7 @@ const FilterCard = ({ filter, onClick, selectedFilter }: FilterCardProps) => {
         alt="filter image"
         width={50}
         height={20}
-        className="absolute right-0"
+        className="absolute right-[-8px] overflow-hidden"
       />
     </div>
   );

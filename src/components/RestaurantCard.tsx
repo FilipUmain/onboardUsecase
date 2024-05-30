@@ -61,7 +61,7 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
         alt="restaurant image"
         width={140}
         height={140}
-        className="absolute top-[-30px] right-[-10px]"
+        className="absolute top-[-30px] right-[-25px]"
         style={{ opacity: isOpen ? 1 : 0.5 }}
       />
       {!isOpen && (
