@@ -80,13 +80,13 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
         {isOpen ? (
           <a
             href={`Restaurant/?id=${restaurant.id}`}
-            className="bg-[#00703A] h-[32px] w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px]"
+            className="bg-[#00703A] h-[32px] min-w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px]"
           >
             <GoArrowRight />
           </a>
         ) : (
           <div
-            className="bg-[#00703A] h-[32px] w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px] opacity-50 cursor-not-allowed"
+            className="bg-[#00703A] h-[32px] min-w-[32px] text-2xl flex items-center justify-center rounded-[50%] text-white text-[14px] opacity-50 cursor-not-allowed"
             style={{ pointerEvents: "none" }}
           >
             <GoArrowRight />
