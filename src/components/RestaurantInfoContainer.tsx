@@ -23,7 +23,7 @@ const RestaurantInfoContainer = () => {
     max: 100,
   });
 
-  const WEBSITE = process.env.WEBSITE_URL;
+  const NEXT_PUBLIC_WEBSITE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL;
 
   // Fetching all restaurants and Filters client side
 
@@ -46,7 +46,7 @@ const RestaurantInfoContainer = () => {
   // Fetching restaurants and filters server side
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(`${WEBSITE}api`, {
+      const res = await fetch(`${NEXT_PUBLIC_WEBSITE_URL}api`, {
         method: "GET",
       });
       const data = await res.json();
