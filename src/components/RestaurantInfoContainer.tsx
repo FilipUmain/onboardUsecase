@@ -53,18 +53,11 @@ const RestaurantInfoContainer = () => {
 
       setFilters(data.filters);
 
-      const restaurantsWithPriceRange = await Promise.all(
-        data.restaurants.map(async (restaurant: IRestaurant) => {
-          const priceRangeData = await getPriceRange(restaurant.price_range_id);
-          return { ...restaurant, price_range: priceRangeData.range };
-        })
-      );
-
-      setRestaurants(restaurantsWithPriceRange);
+      setRestaurants(data.restaurants);
     };
 
     getData();
-  }, []);
+  }, [NEXT_PUBLIC_WEBSITE_URL]);
 
   const handleFilterClick = (filter: IFilter) => {
     if (selectedFilter && selectedFilter.id === filter.id) {
