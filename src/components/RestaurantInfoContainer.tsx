@@ -10,11 +10,14 @@ import { IRestaurant } from "@/models/IRestaurant";
 import { getFilters } from "@/utils/getFilters";
 import { getRestaurants } from "@/utils/getRestaurants";
 import FilterSideBar from "./FilterSideBar";
+import { IPriceRange } from "@/models/IPriceRange";
+import { getPriceRange } from "@/utils/getPriceRange";
 
 const RestaurantInfoContainer = () => {
   const [filters, setFilters] = useState<IFilter[]>([]);
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string>("");
   const [selectedDeliveryTime, setSelectedDeliveryTime] = useState({
     min: 0,
     max: 100,
@@ -47,7 +50,15 @@ const RestaurantInfoContainer = () => {
       const data = await res.json();
 
       setFilters(data.filters);
-      setRestaurants(data.restaurants);
+
+      const restaurantsWithPriceRange = await Promise.all(
+        data.restaurants.map(async (restaurant: IRestaurant) => {
+          const priceRangeData = await getPriceRange(restaurant.price_range_id);
+          return { ...restaurant, price_range: priceRangeData.range };
+        })
+      );
+
+      setRestaurants(restaurantsWithPriceRange);
     };
 
     getData();
@@ -68,9 +79,11 @@ const RestaurantInfoContainer = () => {
     (restaurant) =>
       restaurant.delivery_time_minutes >= selectedDeliveryTime.min &&
       restaurant.delivery_time_minutes <= selectedDeliveryTime.max &&
-      (!selectedFilter || restaurant.filter_ids.includes(selectedFilter.id))
+      (!selectedFilter || restaurant.filter_ids.includes(selectedFilter.id)) &&
+      (!selectedPriceRange || restaurant.price_range === selectedPriceRange)
   );
 
+  console.log(selectedPriceRange);
   return (
     <section className="w-full">
       <div className="w-full mt-8 mb-4 lg:m-2 lg:mb-8">
@@ -111,6 +124,8 @@ const RestaurantInfoContainer = () => {
             selectedFilter={selectedFilter}
             selectedDeliveryTime={selectedDeliveryTime}
             setSelectedDeliveryTime={setSelectedDeliveryTime}
+            selectedPriceRange={selectedPriceRange}
+            setSelectedPriceRange={setSelectedPriceRange}
           />
         </div>
         <div className="lg:w-[75%] w-full">

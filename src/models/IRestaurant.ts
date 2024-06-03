@@ -1,3 +1,5 @@
+import { IPriceRange } from "./IPriceRange";
+
 export interface IRestaurant {
   id: string;
   name: string;
@@ -6,4 +8,5 @@ export interface IRestaurant {
   image_url: string;
   delivery_time_minutes: number;
   price_range_id: string;
+  price_range: string;
 }
