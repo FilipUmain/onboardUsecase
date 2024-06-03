@@ -20,32 +20,50 @@ const RestaurantInfoContainer = () => {
     max: 100,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getRestaurants();
-        setRestaurants(res.restaurants);
+  // Fetching all restaurants and Filters client side
 
-        const filtersRes = await getFilters();
-        setFilters(filtersRes.filters);
-      } catch (error) {
-        console.error("Failed to fetch data", error);
-      }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await getRestaurants();
+  //       setRestaurants(res.restaurants);
+
+  //       const filtersRes = await getFilters();
+  //       setFilters(filtersRes.filters);
+  //     } catch (error) {
+  //       console.error("Failed to fetch data", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  // Fetching restaurants and filters server side
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch("http://localhost:3000/api", {
+        method: "GET",
+      });
+      const data = await res.json();
+
+      setFilters(data.filters);
+      setRestaurants(data.restaurants);
     };
 
-    fetchData();
+    getData();
   }, []);
 
   const handleFilterClick = (filter: IFilter) => {
     if (selectedFilter && selectedFilter.id === filter.id) {
-      // deselect
+      // Deselect
       setSelectedFilter(null);
     } else {
-      //select
+      // Select
       setSelectedFilter(filter);
     }
   };
 
+  // filtered restaurants array that I map out.
   const filteredRestaurants = restaurants.filter(
     (restaurant) =>
       restaurant.delivery_time_minutes >= selectedDeliveryTime.min &&

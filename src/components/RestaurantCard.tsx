@@ -31,6 +31,7 @@ const RestaurantCard = ({ restaurant }: IRestaurantCardProps) => {
     fetchData();
   }, [restaurant.id, restaurant.price_range_id]);
 
+  // Redirect
   const handleClick = () => {
     if (!isOpen) return;
     window.location.href = `Restaurant/?id=${restaurant.id}`;

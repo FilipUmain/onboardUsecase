@@ -13,6 +13,7 @@ const DeliveryTime = ({
   selectedDeliveryTime,
   setSelectedDeliveryTime,
 }: Props) => {
+  // Select deselect deliveryTime
   const handleDeliveryTimeClick = (minTime: number, maxTime: number) => {
     if (
       selectedDeliveryTime.min === minTime &&
