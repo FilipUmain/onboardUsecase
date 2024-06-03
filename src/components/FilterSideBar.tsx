@@ -24,8 +24,13 @@ const FilterSideBar = ({
   selectedPriceRange,
   setSelectedPriceRange,
 }: IFilterSideBarProps) => {
+  // Selecting price_range
   const handlePriceRangeClick = (priceRange: string) => {
-    setSelectedPriceRange(priceRange);
+    if (selectedPriceRange == priceRange) {
+      setSelectedPriceRange("");
+    } else {
+      setSelectedPriceRange(priceRange);
+    }
   };
 
   return (
